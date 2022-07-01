@@ -102,5 +102,6 @@ const baseColumns: DataTableColumn<Data>[] = [
   {
     key: 'value',
     title: 'Value',
+    wrap: true,
   },
 ];
