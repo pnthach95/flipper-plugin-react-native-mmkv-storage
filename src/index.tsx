@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  PluginClient,
-  usePlugin,
-  Layout,
-  Tabs,
-  Tab,
+  createDataSource,
+  createState,
   DataTable,
   DataTableColumn,
-  createDataSource,
+  Layout,
+  PluginClient,
+  Tab,
+  Tabs,
+  theme,
+  usePlugin,
 } from 'flipper-plugin';
-import {Button} from 'antd';
+import {Button, Typography} from 'antd';
 
 type Data = {
   instanceID: string;
@@ -22,13 +24,23 @@ type Data = {
 
 type Events = {
   newData: Data;
+  supportStatus: string;
 };
 
 export function plugin(client: PluginClient<Events, {}>) {
   const data = createDataSource<Data, 'time'>([], {key: 'time'});
+  const supportStatus = createState<string | null>(null);
 
   client.onMessage('newData', newData => {
     data.append(newData);
+  });
+
+  client.onMessage('supportStatus', (reason: string) => {
+    if (reason) {
+      supportStatus.set(reason);
+    } else {
+      supportStatus.set(null);
+    }
   });
 
   client.addMenuEntry({
@@ -42,18 +54,26 @@ export function plugin(client: PluginClient<Events, {}>) {
     data.clear();
   }
 
-  return {data, clearLogs};
+  return {data, supportStatus, clearLogs};
 }
 
 export function Component() {
   const instance = usePlugin(plugin);
+  const supportStatus = instance.supportStatus.get();
 
   return (
     <Layout.Container grow>
+      {!!supportStatus && (
+        <Layout.Container style={errorBGStyle}>
+          <Typography.Text>{supportStatus}</Typography.Text>
+        </Layout.Container>
+      )}
       <Tabs grow>
         <Tab tab="Actions">
           <DataTable
             columns={baseColumns}
+            enableAutoScroll
+            onRowStyle={getRowStyle}
             dataSource={instance.data}
             extraActions={
               <Layout.Horizontal gap>
@@ -105,3 +125,15 @@ const baseColumns: DataTableColumn<Data>[] = [
     wrap: true,
   },
 ];
+
+const errorStyle = {
+  color: theme.errorColor,
+};
+
+const errorBGStyle: React.CSSProperties = {
+  backgroundColor: theme.errorColor,
+};
+
+function getRowStyle(row: Data) {
+  return row.mode === 'DELETE' ? errorStyle : undefined;
+}
