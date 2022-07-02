@@ -10,6 +10,7 @@ import {
   Tabs,
   theme,
   usePlugin,
+  useValue,
 } from 'flipper-plugin';
 import {Button, Typography} from 'antd';
 
@@ -59,7 +60,7 @@ export function plugin(client: PluginClient<Events, {}>) {
 
 export function Component() {
   const instance = usePlugin(plugin);
-  const supportStatus = instance.supportStatus.get();
+  const supportStatus = useValue(instance.supportStatus);
 
   return (
     <Layout.Container grow>
