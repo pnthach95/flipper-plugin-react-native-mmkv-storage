@@ -84,15 +84,12 @@ function Sidebar() {
       />
       {selectedData.mode !== 'DELETE' && (
         <Panel
+          collapsible={false}
           extraActions={
-            selectedData.type === 'boolean' ||
-            selectedData.type === 'number' ||
-            selectedData.type === 'string' ? (
-              <EditOutlined
-                title="Edit this value"
-                onClick={instance.openEditDialog}
-              />
-            ) : null
+            <EditOutlined
+              title="Edit this value"
+              onClick={instance.openEditDialog}
+            />
           }
           pad
           title="Value">
@@ -107,7 +104,7 @@ export const columns: DataTableColumn[] = [
   {
     key: 'key',
     width: 100,
-    title: 'Key',
+    title: 'Title',
   },
   {
     key: 'value',

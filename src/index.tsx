@@ -62,6 +62,7 @@ export function plugin(client: PluginClient<Events, Methods>) {
       if (d) {
         client.send('editValue', {data: d, newValue}).finally(() => {
           showEditDialog.set(false);
+          selectedDataID.set(null);
         });
       }
     }

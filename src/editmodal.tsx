@@ -1,5 +1,5 @@
 import {Input, Modal, Select, Typography} from 'antd';
-import {usePlugin, useValue} from 'flipper-plugin';
+import {theme, usePlugin, useValue} from 'flipper-plugin';
 import React, {useEffect, useState} from 'react';
 import {plugin} from '.';
 import styles from './styles';
@@ -17,12 +17,7 @@ function EditModal() {
     if (selectedDataID) {
       const d = instance.data.getById(selectedDataID);
       if (d) {
-        if (typeof d.value === 'boolean') {
-          setNewBoolValue(d.value);
-        }
-        if (typeof d.value === 'string' || typeof d.value === 'number') {
-          setNewStringValue(`${d.value}`);
-        }
+        setNewValue(d);
         setSelectedData(d);
       } else {
         setSelectedData(null);
@@ -31,6 +26,23 @@ function EditModal() {
       setSelectedData(null);
     }
   }, [selectedDataID]);
+
+  function setNewValue(d: Data) {
+    switch (typeof d.value) {
+      case 'boolean':
+        setNewBoolValue(d.value);
+        break;
+      case 'string':
+      case 'number':
+        setNewStringValue(`${d.value}`);
+        break;
+      case 'object':
+        setNewStringValue(JSON.stringify(d.value, null, 2));
+        break;
+      default:
+        break;
+    }
+  }
 
   function onOK() {
     if (selectedData) {
@@ -48,9 +60,53 @@ function EditModal() {
             setErrorText('Your input is not number!');
           }
           break;
+        case 'array':
+          {
+            try {
+              const arr = JSON.parse(newStringValue);
+              if (Array.isArray(arr)) {
+                instance.onEditValue(arr);
+              } else {
+                setErrorText("Syntax error: this isn't an array!");
+              }
+            } catch (error) {
+              if (error instanceof Error) {
+                setErrorText('Syntax error: ' + error.message);
+              } else {
+                setErrorText('Syntax error');
+              }
+            }
+          }
+          break;
+        case 'object':
+          {
+            try {
+              const obj = JSON.parse(newStringValue);
+              if (typeof obj === 'object' && !Array.isArray(obj)) {
+                instance.onEditValue(obj);
+              } else {
+                setErrorText("Syntax error: this isn't an object!");
+              }
+            } catch (error) {
+              if (error instanceof Error) {
+                setErrorText('Syntax error: ' + error.message);
+              } else {
+                setErrorText('Syntax error');
+              }
+            }
+          }
+          break;
         default:
           break;
       }
+    }
+  }
+
+  function onCancel() {
+    instance.closeEditDialog();
+    setErrorText('');
+    if (selectedData) {
+      setNewValue(selectedData);
     }
   }
 
@@ -71,7 +127,7 @@ function EditModal() {
       visible={showEditDialog}
       title="Edit value"
       onOk={onOK}
-      onCancel={instance.closeEditDialog}>
+      onCancel={onCancel}>
       <Typography.Text>Instance ID: {selectedData?.instanceID}</Typography.Text>
       <br />
       <Typography.Text>Key: {selectedData?.key}</Typography.Text>
@@ -95,10 +151,13 @@ function EditModal() {
       {selectedData?.type === 'number' && (
         <Input value={newStringValue} onChange={onChangeNumber} />
       )}
-      {selectedData?.type === 'string' && (
+      {(selectedData?.type === 'string' ||
+        selectedData?.type === 'array' ||
+        selectedData?.type === 'object') && (
         <Input.TextArea
           autoSize={{minRows: 2, maxRows: 6}}
           value={newStringValue}
+          style={selectedData.type !== 'string' ? theme.monospace : undefined}
           onChange={onChangeString}
         />
       )}
