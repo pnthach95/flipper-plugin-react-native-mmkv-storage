@@ -12,6 +12,8 @@ _* Tested on Flipper v0.152.0, React Native v0.68.2, RN MMKV Storage source code
 
 Open Flipper and search on Plugin Manager
 
+![manager](docs/manager.png)
+
 ## FAQ
 
 ### My Android app crashes nonstop

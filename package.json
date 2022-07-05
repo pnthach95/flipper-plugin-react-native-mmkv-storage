@@ -6,6 +6,10 @@
     "email": "thachxyz123@gmail.com",
     "name": "Pham Ngoc Thach"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pnthach95/flipper-plugin-react-native-mmkv-storage.git"
+  },
   "id": "react-native-mmkv-storage",
   "version": "1.0.0",
   "pluginType": "client",
