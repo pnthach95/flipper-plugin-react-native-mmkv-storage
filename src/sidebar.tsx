@@ -12,16 +12,24 @@ import React from 'react';
 import {plugin} from '.';
 import type {DataTableColumn} from 'flipper-plugin';
 
+const NoRecord = (
+  <Layout.Container pad grow center>
+    <Typography.Text type="secondary">No record selected</Typography.Text>
+  </Layout.Container>
+);
+
 function Sidebar() {
   const instance = usePlugin(plugin);
-  const selectedData = useValue(instance.selectedData);
+  const selectedDataID = useValue(instance.selectedDataID);
+
+  if (!selectedDataID) {
+    return NoRecord;
+  }
+
+  const selectedData = instance.data.getById(selectedDataID);
 
   if (!selectedData) {
-    return (
-      <Layout.Container pad grow center>
-        <Typography.Text type="secondary">No record selected</Typography.Text>
-      </Layout.Container>
-    );
+    return NoRecord;
   }
 
   const records =

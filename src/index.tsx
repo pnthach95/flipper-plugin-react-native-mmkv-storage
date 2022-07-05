@@ -17,7 +17,7 @@ import type {PluginClient, DataTableColumn} from 'flipper-plugin';
 export function plugin(client: PluginClient<Events, Methods>) {
   const data = createDataSource<Data, 'time'>([], {key: 'time'});
   const supportStatus = createState<string | null>(null);
-  const selectedData = createState<Data | null>(null);
+  const selectedDataID = createState<string | null>(null);
   const showEditDialog = createState(false);
 
   client.onMessage('newData', newData => {
@@ -43,8 +43,8 @@ export function plugin(client: PluginClient<Events, Methods>) {
     data.clear();
   }
 
-  function onSelect(d: Data) {
-    selectedData.set(d);
+  function onSelect(d: string | null) {
+    selectedDataID.set(d);
   }
 
   function openEditDialog() {
@@ -56,18 +56,21 @@ export function plugin(client: PluginClient<Events, Methods>) {
   }
 
   function onEditValue(newValue: unknown) {
-    const data = selectedData.get();
-    if (data) {
-      client.send('editValue', {data, newValue}).finally(() => {
-        showEditDialog.set(false);
-      });
+    const id = selectedDataID.get();
+    if (id) {
+      const d = data.getById(id);
+      if (d) {
+        client.send('editValue', {data: d, newValue}).finally(() => {
+          showEditDialog.set(false);
+        });
+      }
     }
   }
 
   return {
     data,
     supportStatus,
-    selectedData,
+    selectedDataID,
     showEditDialog,
     onEditValue,
     onSelect,
@@ -104,7 +107,13 @@ export function Component() {
         enableHorizontalScroll={false}
         extraActions={extraActions}
         onRowStyle={getRowStyle}
-        onSelect={instance.onSelect}
+        onSelect={record => {
+          if (record) {
+            instance.onSelect(record.time);
+          } else {
+            instance.onSelect(null);
+          }
+        }}
       />
       <DetailSidebar>
         <Sidebar />

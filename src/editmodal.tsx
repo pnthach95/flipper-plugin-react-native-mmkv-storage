@@ -7,22 +7,30 @@ import styles from './styles';
 function EditModal() {
   const instance = usePlugin(plugin);
   const showEditDialog = useValue(instance.showEditDialog);
-  const selectedData = useValue(instance.selectedData);
-  const [newBoolValue, setNewBoolValue] = useState(selectedData?.value);
+  const selectedDataID = useValue(instance.selectedDataID);
+  const [selectedData, setSelectedData] = useState<Data | null>(null);
+  const [newBoolValue, setNewBoolValue] = useState(true);
   const [newStringValue, setNewStringValue] = useState('');
   const [errorText, setErrorText] = useState('');
 
   useEffect(() => {
-    if (typeof selectedData?.value === 'boolean') {
-      setNewBoolValue(selectedData.value);
+    if (selectedDataID) {
+      const d = instance.data.getById(selectedDataID);
+      if (d) {
+        if (typeof d.value === 'boolean') {
+          setNewBoolValue(d.value);
+        }
+        if (typeof d.value === 'string' || typeof d.value === 'number') {
+          setNewStringValue(`${d.value}`);
+        }
+        setSelectedData(d);
+      } else {
+        setSelectedData(null);
+      }
+    } else {
+      setSelectedData(null);
     }
-    if (
-      typeof selectedData?.value === 'string' ||
-      typeof selectedData?.value === 'number'
-    ) {
-      setNewStringValue(`${selectedData.value}`);
-    }
-  }, [selectedData?.value]);
+  }, [selectedDataID]);
 
   function onOK() {
     if (selectedData) {
@@ -88,7 +96,11 @@ function EditModal() {
         <Input value={newStringValue} onChange={onChangeNumber} />
       )}
       {selectedData?.type === 'string' && (
-        <Input.TextArea value={newStringValue} onChange={onChangeString} />
+        <Input.TextArea
+          autoSize={{minRows: 2, maxRows: 6}}
+          value={newStringValue}
+          onChange={onChangeString}
+        />
       )}
       {!!errorText && (
         <Typography.Text style={styles.errorBold}>{errorText}</Typography.Text>
