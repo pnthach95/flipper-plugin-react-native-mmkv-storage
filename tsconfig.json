@@ -9,6 +9,5 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
-  },
-  "files": ["src/index.tsx"]
+  }
 }
