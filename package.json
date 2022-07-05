@@ -9,7 +9,9 @@
   "flipperBundlerEntry": "src/index.tsx",
   "license": "MIT",
   "keywords": [
-    "flipper-plugin"
+    "flipper-plugin",
+    "mmkv",
+    "react-native-mmkv-storage"
   ],
   "icon": "briefcase",
   "title": "RN MMKV Storage",
