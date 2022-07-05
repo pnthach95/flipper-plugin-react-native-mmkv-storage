@@ -60,10 +60,21 @@ export function plugin(client: PluginClient<Events, Methods>) {
     if (id) {
       const d = data.getById(id);
       if (d) {
-        client.send('editValue', {data: d, newValue}).finally(() => {
-          showEditDialog.set(false);
-          selectedDataID.set(null);
-        });
+        client.send('editValue', {data: d, newValue});
+        showEditDialog.set(false);
+        selectedDataID.set(null);
+      }
+    }
+  }
+
+  function onDelete() {
+    const id = selectedDataID.get();
+    if (id) {
+      const d = data.getById(id);
+      if (d) {
+        client.send('deleteItem', {data: d});
+        showEditDialog.set(false);
+        selectedDataID.set(null);
       }
     }
   }
@@ -74,6 +85,7 @@ export function plugin(client: PluginClient<Events, Methods>) {
     selectedDataID,
     showEditDialog,
     onEditValue,
+    onDelete,
     onSelect,
     openEditDialog,
     closeEditDialog,

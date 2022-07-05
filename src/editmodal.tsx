@@ -1,4 +1,4 @@
-import {Input, Modal, Select, Typography} from 'antd';
+import {Button, Input, Modal, Select, Typography} from 'antd';
 import {theme, usePlugin, useValue} from 'flipper-plugin';
 import React, {useEffect, useState} from 'react';
 import {plugin} from '.';
@@ -164,6 +164,11 @@ function EditModal() {
       {!!errorText && (
         <Typography.Text style={styles.errorBold}>{errorText}</Typography.Text>
       )}
+      <br />
+      <br />
+      <Button danger onClick={instance.onDelete}>
+        Delete item
+      </Button>
     </Modal>
   );
 }

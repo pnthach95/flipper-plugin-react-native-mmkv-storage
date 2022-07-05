@@ -14,4 +14,5 @@ type Events = {
 
 type Methods = {
   editValue: (state: {data: Data; newValue: unknown}) => Promise<void>;
+  deleteItem: (state: {data: Data}) => Promise<void>;
 };
