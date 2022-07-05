@@ -2,6 +2,10 @@
   "$schema": "https://fbflipper.com/schemas/plugin-package/v2.json",
   "name": "flipper-plugin-react-native-mmkv-storage",
   "description": "Developer tools for React Native MMKV Storage",
+  "author": {
+    "email": "thachxyz123@gmail.com",
+    "name": "Pham Ngoc Thach"
+  },
   "id": "react-native-mmkv-storage",
   "version": "1.0.0",
   "pluginType": "client",
