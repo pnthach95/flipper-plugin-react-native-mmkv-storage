@@ -1,4 +1,5 @@
 type Data = {
+  dkey: string;
   instanceID: string;
   mode: 'READ' | 'WRITE' | 'DELETE';
   key: string;

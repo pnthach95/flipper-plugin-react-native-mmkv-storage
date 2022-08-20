@@ -15,13 +15,16 @@ import Sidebar from './sidebar';
 import type {PluginClient, DataTableColumn} from 'flipper-plugin';
 
 export function plugin(client: PluginClient<Events, Methods>) {
-  const data = createDataSource<Data, 'time'>([], {key: 'time'});
+  const data = createDataSource<Data, 'dkey'>([], {key: 'dkey'});
   const supportStatus = createState<string | null>(null);
   const selectedDataID = createState<string | null>(null);
   const showEditDialog = createState(false);
 
   client.onMessage('newData', newData => {
-    data.append(newData);
+    data.append({
+      ...newData,
+      dkey: newData.instanceID + newData.key + newData.time,
+    });
   });
 
   client.onMessage('supportStatus', status => {
