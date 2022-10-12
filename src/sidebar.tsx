@@ -13,7 +13,7 @@ import {plugin} from '.';
 import type {DataTableColumn} from 'flipper-plugin';
 
 const NoRecord = (
-  <Layout.Container pad grow center>
+  <Layout.Container center grow pad>
     <Typography.Text type="secondary">No record selected</Typography.Text>
   </Layout.Container>
 );
@@ -84,6 +84,7 @@ function Sidebar() {
       />
       {selectedData.mode !== 'DELETE' && (
         <Panel
+          pad
           collapsible={false}
           extraActions={
             <EditOutlined
@@ -91,7 +92,6 @@ function Sidebar() {
               onClick={instance.openEditDialog}
             />
           }
-          pad
           title="Value">
           <CodeBlock>{parsedValue()}</CodeBlock>
         </Panel>

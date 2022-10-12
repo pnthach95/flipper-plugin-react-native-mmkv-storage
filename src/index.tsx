@@ -20,6 +20,10 @@ export function plugin(client: PluginClient<Events, Methods>) {
   const selectedDataID = createState<string | null>(null);
   const showEditDialog = createState(false);
 
+  client.onConnect(() => {
+    console.log('connected');
+  });
+
   client.onMessage('newData', newData => {
     data.append({
       ...newData,
@@ -37,7 +41,7 @@ export function plugin(client: PluginClient<Events, Methods>) {
 
   client.addMenuEntry({
     action: 'clear',
-    handler: async () => {
+    handler: () => {
       data.clear();
     },
   });
@@ -63,7 +67,7 @@ export function plugin(client: PluginClient<Events, Methods>) {
     if (id) {
       const d = data.getById(id);
       if (d) {
-        client.send('editValue', {data: d, newValue});
+        void client.send('editValue', {data: d, newValue});
         showEditDialog.set(false);
         selectedDataID.set(null);
       }
@@ -75,7 +79,7 @@ export function plugin(client: PluginClient<Events, Methods>) {
     if (id) {
       const d = data.getById(id);
       if (d) {
-        client.send('deleteItem', {data: d});
+        void client.send('deleteItem', {data: d});
         showEditDialog.set(false);
         selectedDataID.set(null);
       }
@@ -117,9 +121,9 @@ export function Component() {
         </Layout.Container>
       )}
       <DataTable
+        enableAutoScroll
         columns={columns}
         dataSource={instance.data}
-        enableAutoScroll
         enableHorizontalScroll={false}
         extraActions={extraActions}
         onRowStyle={getRowStyle}
@@ -143,7 +147,7 @@ const columns: DataTableColumn<Data>[] = [
   {
     key: 'time',
     title: 'Time',
-    formatters: value => {
+    formatters: (value: string) => {
       const d = new Date(value);
       return d.toLocaleString();
     },

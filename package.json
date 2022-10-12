@@ -50,6 +50,7 @@
     "antd": "latest",
     "eslint": "7.32.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
     "flipper-pkg": "latest",
     "flipper-plugin": "latest",
     "jest": "latest",

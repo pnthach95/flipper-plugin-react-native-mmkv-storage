@@ -124,10 +124,10 @@ function EditModal() {
 
   return (
     <Modal
-      visible={showEditDialog}
       title="Edit value"
-      onOk={onOK}
-      onCancel={onCancel}>
+      visible={showEditDialog}
+      onCancel={onCancel}
+      onOk={onOK}>
       <Typography.Text>Instance ID: {selectedData?.instanceID}</Typography.Text>
       <br />
       <Typography.Text>Key: {selectedData?.key}</Typography.Text>
@@ -141,8 +141,8 @@ function EditModal() {
       <br />
       {selectedData?.type === 'boolean' && (
         <Select
-          value={newBoolValue}
           options={booleanOptions}
+          value={newBoolValue}
           onChange={v => {
             setNewBoolValue(v);
           }}
@@ -156,8 +156,8 @@ function EditModal() {
         selectedData?.type === 'object') && (
         <Input.TextArea
           autoSize={{minRows: 2, maxRows: 6}}
-          value={newStringValue}
           style={selectedData.type !== 'string' ? theme.monospace : undefined}
+          value={newStringValue}
           onChange={onChangeString}
         />
       )}
