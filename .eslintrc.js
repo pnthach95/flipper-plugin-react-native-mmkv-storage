@@ -9,7 +9,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint', 'prettier', 'react'],
+  plugins: ['@typescript-eslint', 'prettier', 'react', 'import'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -37,6 +37,24 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-use-before-define': 'off',
     'prettier/prettier': 'error',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'internal',
+          'external',
+          'parent',
+          'sibling',
+          'index',
+          'type',
+        ],
+        alphabetize: {
+          order: 'asc',
+        },
+      },
+    ],
+    'sort-imports': ['error', {ignoreDeclarationSort: true}],
   },
   settings: {
     react: {

@@ -33,7 +33,7 @@
   "peerDependencies": {
     "@emotion/styled": "latest",
     "antd": "latest",
-    "flipper-plugin": "^0.152.0",
+    "flipper-plugin": "^0.164.0",
     "react": "latest",
     "react-dom": "latest"
   },
@@ -49,10 +49,11 @@
     "@typescript-eslint/parser": "^5.30.5",
     "antd": "latest",
     "eslint": "7.32.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.10",
     "flipper-pkg": "latest",
-    "flipper-plugin": "latest",
+    "flipper-plugin": "^0.164.0",
     "jest": "latest",
     "jest-mock-console": "latest",
     "prettier": "^2.7.1",
