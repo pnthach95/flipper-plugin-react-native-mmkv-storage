@@ -11,7 +11,7 @@
     "url": "git+https://github.com/pnthach95/flipper-plugin-react-native-mmkv-storage.git"
   },
   "id": "react-native-mmkv-storage",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "pluginType": "client",
   "main": "dist/bundle.js",
   "flipperBundlerEntry": "src/index.tsx",
