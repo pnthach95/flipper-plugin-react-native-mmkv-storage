@@ -121,6 +121,14 @@ export function Component() {
     </Layout.Horizontal>
   );
 
+  const onSelect = (record: Data | undefined) => {
+    if (record) {
+      instance.onSelect(record.dkey);
+    } else {
+      instance.onSelect(null);
+    }
+  };
+
   return (
     <Layout.Container grow>
       {!!supportStatus && (
@@ -137,13 +145,7 @@ export function Component() {
         enableHorizontalScroll={false}
         extraActions={extraActions}
         onRowStyle={getRowStyle}
-        onSelect={record => {
-          if (record) {
-            instance.onSelect(record.time);
-          } else {
-            instance.onSelect(null);
-          }
-        }}
+        onSelect={onSelect}
       />
       <DetailSidebar>
         <Sidebar />
