@@ -1441,6 +1441,40 @@
     widest-line "^3.1.0"
     wrap-ansi "^7.0.0"
 
+"@oclif/core@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-2.0.7.tgz#a17a85dfa105dda120fbc5647432010feaa97a9e"
+  integrity sha512-pj7hIH8SBeH3qha47fmyqdaBdNVEqesRgnKFh8Ytdb4S41/4BYOiQuyQGuvnKgvicH6DMxp4FbM9EQEW46V9xw==
+  dependencies:
+    "@types/cli-progress" "^3.11.0"
+    ansi-escapes "^4.3.2"
+    ansi-styles "^4.3.0"
+    cardinal "^2.1.1"
+    chalk "^4.1.2"
+    clean-stack "^3.0.1"
+    cli-progress "^3.10.0"
+    debug "^4.3.4"
+    ejs "^3.1.6"
+    fs-extra "^9.1.0"
+    get-package-type "^0.1.0"
+    globby "^11.1.0"
+    hyperlinker "^1.0.0"
+    indent-string "^4.0.0"
+    is-wsl "^2.2.0"
+    js-yaml "^3.14.1"
+    natural-orderby "^2.0.3"
+    object-treeify "^1.1.33"
+    password-prompt "^1.1.2"
+    semver "^7.3.7"
+    string-width "^4.2.3"
+    strip-ansi "^6.0.1"
+    supports-color "^8.1.1"
+    supports-hyperlinks "^2.2.0"
+    tslib "^2.4.1"
+    widest-line "^3.1.0"
+    wordwrap "^1.0.0"
+    wrap-ansi "^7.0.0"
+
 "@oclif/errors@1.3.6", "@oclif/errors@^1.3.6":
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/@oclif/errors/-/errors-1.3.6.tgz#e8fe1fc12346cb77c4f274e26891964f5175f75d"
@@ -1489,12 +1523,12 @@
   dependencies:
     "@oclif/core" "^1.16.5"
 
-"@oclif/plugin-warn-if-update-available@^2.0.3":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.8.tgz#0b5c8fc8751b28d17cacc78843c6d3833a81603c"
-  integrity sha512-UDmxMtCq8GDCxVV0P9Kjm257RfcPe6+jY8PPMLYXFYdn20Er8c6vuy8AMD1Z6lO03vACDs+Vsw8gEpCTI7b5Fw==
+"@oclif/plugin-warn-if-update-available@^2.0.14":
+  version "2.0.24"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-warn-if-update-available/-/plugin-warn-if-update-available-2.0.24.tgz#dffc4b19cf64baf0bf3a4d9925b17bfb111cc1c8"
+  integrity sha512-Rq8/EZ8wQawvPWS6W59Zhf/zSz/umLc3q75I1ybi7pul6YMNwf/E1eDVHytSUEQ6yQV+p3cCs034IItz4CVdjw==
   dependencies:
-    "@oclif/core" "^1.16.5"
+    "@oclif/core" "^2.0.7"
     chalk "^4.1.0"
     debug "^4.1.0"
     fs-extra "^9.0.1"
@@ -1596,6 +1630,13 @@
   integrity sha512-FcFaxOr2V5KZCviw1TnutEMVUVsGt4D2hP1TAfXZAMKuHYW3xQhe3jTxNPWutgCJ3/X1c5yX8ZoGVEItxKbwBg==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/cli-progress@^3.11.0":
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/@types/cli-progress/-/cli-progress-3.11.0.tgz#ec79df99b26757c3d1c7170af8422e0fc95eef7e"
+  integrity sha512-XhXhBv1R/q2ahF3BM7qT5HLzJNlIL0wbcGyZVjqOTqAybAnsLisd7gy1UCyIqpL+5Iv6XhlSyzjLCnI2sIdbCg==
+  dependencies:
+    "@types/node" "*"
 
 "@types/debug@^4.1.7":
   version "4.1.7"
@@ -1708,6 +1749,13 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
+"@types/react-dom@<18":
+  version "17.0.18"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.18.tgz#8f7af38f5d9b42f79162eea7492e5a1caff70dc2"
+  integrity sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==
+  dependencies:
+    "@types/react" "^17"
+
 "@types/react-dom@^17.0.13":
   version "17.0.17"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.17.tgz#2e3743277a793a96a99f1bf87614598289da68a1"
@@ -1715,14 +1763,14 @@
   dependencies:
     "@types/react" "^17"
 
-"@types/react-dom@^18.0.0", "@types/react-dom@latest":
+"@types/react-dom@^18.0.0":
   version "18.0.6"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.6.tgz#36652900024842b74607a17786b6662dd1e103a1"
   integrity sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@latest":
+"@types/react@*":
   version "18.0.21"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
   integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
@@ -1735,6 +1783,15 @@
   version "17.0.39"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.39.tgz#d0f4cde092502a6db00a1cded6e6bf2abb7633ce"
   integrity sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@<18":
+  version "17.0.53"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.53.tgz#10d4d5999b8af3d6bc6a9369d7eb953da82442ab"
+  integrity sha512-1yIpQR2zdYu1Z/dc1OxC+MA6GR240u3gcnP4l6mvj/PJiVaqHsQPmWttsvHsfnhfPbU2FuGmo0wSITPygjBmsw==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3577,23 +3634,23 @@ flipper-common@0.164.0:
   dependencies:
     uuid "^8.3.2"
 
-flipper-common@0.168.0:
-  version "0.168.0"
-  resolved "https://registry.yarnpkg.com/flipper-common/-/flipper-common-0.168.0.tgz#378acae4ebe948564f8da4cf61afc0999c40ec59"
-  integrity sha512-QprON5/LieIInu96MGFOII/XPywXRzaO5cE8/OO0k0MPgu16KGUKVAyzwdn0xamNg8lD0WB+d6/EjL5NqEV7bw==
+flipper-common@0.177.0:
+  version "0.177.0"
+  resolved "https://registry.yarnpkg.com/flipper-common/-/flipper-common-0.177.0.tgz#b589a83efa8cb20767c7713552815a3c931afbc6"
+  integrity sha512-DTlv5TrIEJI6+zJbTeBgo1Ah4y0J5kGJztLWufxqttIhJDUHEPActMQfXgo/NA8X577139CjsN8Tu/64cYcvTw==
   dependencies:
     uuid "^8.3.2"
 
-flipper-pkg-lib@0.168.0:
-  version "0.168.0"
-  resolved "https://registry.yarnpkg.com/flipper-pkg-lib/-/flipper-pkg-lib-0.168.0.tgz#b7080291e8c593ae30961942fe058486c0037e29"
-  integrity sha512-a73C6v+OJIqZ4QISZ204Ru9oPLpo97Q0+Rin8CPCczHWCFypEcDdkpT/5G+W2BwgC4gev/uQhpHpm8dbkBSQgg==
+flipper-pkg-lib@0.177.0:
+  version "0.177.0"
+  resolved "https://registry.yarnpkg.com/flipper-pkg-lib/-/flipper-pkg-lib-0.177.0.tgz#19c265398e2bcca54ee907ed45cb7f365f78ab2f"
+  integrity sha512-jDowfLcTRa6S/9hIEIgFaz//58YBXi0xcMPh4bzJ2L94sYEd8ewebvYJ2io3SiRLv3CCzDfduV1uYrWBV0uH+A==
   dependencies:
     chalk "^4"
     esbuild "^0.15.7"
     fb-watchman "^2.0.1"
-    flipper-common "0.168.0"
-    flipper-plugin-lib "0.168.0"
+    flipper-common "0.177.0"
+    flipper-plugin-lib "0.177.0"
     fs-extra "^10.1.0"
     metro "^0.70.2"
     metro-cache "^0.70.2"
@@ -3602,35 +3659,35 @@ flipper-pkg-lib@0.168.0:
     p-map "^4"
 
 flipper-pkg@latest:
-  version "0.168.0"
-  resolved "https://registry.yarnpkg.com/flipper-pkg/-/flipper-pkg-0.168.0.tgz#adb1fcdab3d307b351cc8aff0df4f06412c04d48"
-  integrity sha512-rBUBlUJyNREuNelCqYz6u/+sbq2lsa1LJA5uq9719wArlh758T5WqnCoqgCukRIyuoiShruS0Kc8ZQwVhJ8xWQ==
+  version "0.177.0"
+  resolved "https://registry.yarnpkg.com/flipper-pkg/-/flipper-pkg-0.177.0.tgz#7d03f0f4f59f712385a131a58c4694d1dc4514b9"
+  integrity sha512-zzgCQzkGESd20hW9yI7GBjuYm+qikLo/Va8/fOWkDVqoeYICavcURiBk+Rtyio5oBIN1P5FFgytGAeq2Y2Nksg==
   dependencies:
     "@oclif/command" "^1"
     "@oclif/config" "^1"
     "@oclif/parser" "^3.8.5"
     "@oclif/plugin-help" "^5.1.12"
-    "@oclif/plugin-warn-if-update-available" "^2.0.3"
+    "@oclif/plugin-warn-if-update-available" "^2.0.14"
     ajv "^6.12.2"
     ajv-errors "^1.0.1"
     cli-ux "^6.0.9"
-    flipper-pkg-lib "0.168.0"
-    flipper-plugin-lib "0.168.0"
+    flipper-pkg-lib "0.177.0"
+    flipper-plugin-lib "0.177.0"
     fs-extra "^10.1.0"
     inquirer "^8.2.4"
     lodash "^4.17.21"
     recursive-readdir "^2.2.2"
 
-flipper-plugin-lib@0.168.0:
-  version "0.164.0"
-  resolved "https://registry.yarnpkg.com/flipper-plugin-lib/-/flipper-plugin-lib-0.164.0.tgz#19bbf32ce0ff14915643561235daf8662205a6ce"
-  integrity sha512-Fpja0TRvwcocOV1sm46forXg21j6oxy2f5Kt/+KjrkoltoNWQE2dIqZDZoeDcp3E51n9/UNfdNPpprZUu6kARg==
+flipper-plugin-lib@0.177.0:
+  version "0.177.0"
+  resolved "https://registry.yarnpkg.com/flipper-plugin-lib/-/flipper-plugin-lib-0.177.0.tgz#4a1ecad3402aa3c30170c55fd03dc72878e7f7fa"
+  integrity sha512-SQxYw9sj7Yz3QK5N6Xw7+FXV9ppW0I5ZCsPzxovG27Bx8siJSEQKWk/Cy29GV2YMHDg5e9FdbJY0YnD+nq1rjQ==
   dependencies:
     algoliasearch "^4.13.0"
     decompress "^4.2.1"
     decompress-targz "^4.1.1"
     decompress-unzip "^4.0.1"
-    flipper-common "0.164.0"
+    flipper-common "0.177.0"
     fs-extra "^10.1.0"
     live-plugin-manager "^0.17.1"
     npm-api "^1.0.1"
@@ -6261,12 +6318,13 @@ react-virtual@^2.10.4:
   dependencies:
     "@reach/observe-rect" "^1.1.0"
 
-react@latest:
-  version "18.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
-  integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
+react@<18:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
+  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
   dependencies:
     loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 reactcss@^1.2.0:
   version "1.2.3"
@@ -6996,6 +7054,11 @@ tslib@^2.0.0, tslib@^2.1.0, tslib@^2.3.1:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
+tslib@^2.4.1:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.5.0.tgz#42bfed86f5787aeb41d031866c8f402429e0fddf"
+  integrity sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==
+
 tsutils@^3.21.0:
   version "3.21.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.21.0.tgz#b48717d394cea6c1e096983eed58e9d61715b623"
@@ -7223,6 +7286,11 @@ word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
+
+wordwrap@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
+  integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
 wrap-ansi@^6.2.0:
   version "6.2.0"

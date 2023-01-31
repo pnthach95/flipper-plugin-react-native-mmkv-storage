@@ -2,6 +2,7 @@ import {EditOutlined} from '@ant-design/icons';
 import {Button, Input, Modal, Select, Typography} from 'antd';
 import {
   CodeBlock,
+  DataInspector,
   DataTable,
   DetailSidebar,
   Layout,
@@ -14,6 +15,7 @@ import {
 } from 'flipper-plugin';
 import React, {useEffect, useState} from 'react';
 import {
+  BODY_OPTIONS,
   BOOLEAN_OPTIONS,
   MAIN_COLUMNS,
   SIDEBAR_COLUMNS,
@@ -24,11 +26,16 @@ import {NoRecord} from './norecord';
 import styles from './styles';
 import type {PluginClient} from 'flipper-plugin';
 
+const LOCALSTORAGE_OBJECT_FORMAT_KEY = 'MMKV_OBJECT_FORMAT';
+
 export function plugin(client: PluginClient<Events, Methods>) {
   const data = createDataSource<Data, 'dkey'>([], {key: 'dkey'});
   const supportStatus = createState<string | null>(null);
   const selectedDataID = createState<string | null>(null);
   const showEditDialog = createState(false);
+  const detailBodyFormat = createState<string>(
+    localStorage.getItem(LOCALSTORAGE_OBJECT_FORMAT_KEY) || 'parsed',
+  );
 
   client.onConnect(() => {
     console.log('connected');
@@ -96,14 +103,21 @@ export function plugin(client: PluginClient<Events, Methods>) {
     }
   }
 
+  function onSelectFormat(bodyFormat: string) {
+    detailBodyFormat.set(bodyFormat);
+    localStorage.setItem(LOCALSTORAGE_OBJECT_FORMAT_KEY, bodyFormat);
+  }
+
   return {
     data,
     supportStatus,
     selectedDataID,
     showEditDialog,
+    detailBodyFormat,
     onEditValue,
     onDelete,
     onSelect,
+    onSelectFormat,
     openEditDialog,
     closeEditDialog,
     clearLogs,
@@ -327,12 +341,15 @@ function EditModal() {
 function Sidebar() {
   const instance = usePlugin(plugin);
   const selectedDataID = useValue(instance.selectedDataID);
+  const detailBodyFormat = useValue(instance.detailBodyFormat);
 
   if (!selectedDataID) {
     return NoRecord;
   }
 
   const selectedData = instance.data.getById(selectedDataID);
+  const formattedText =
+    selectedData?.type === 'object' && detailBodyFormat === 'parsed';
 
   if (!selectedData) {
     return NoRecord;
@@ -388,6 +405,7 @@ function Sidebar() {
         records={records}
         scrollable={false}
       />
+      {/* DATA PANEL */}
       {selectedData.mode !== 'DELETE' && (
         <Panel
           pad
@@ -399,7 +417,22 @@ function Sidebar() {
             />
           }
           title="Value">
-          <CodeBlock>{parsedValue()}</CodeBlock>
+          {formattedText ? (
+            <DataInspector collapsed expandRoot data={selectedData.value} />
+          ) : (
+            <CodeBlock>{parsedValue()}</CodeBlock>
+          )}
+        </Panel>
+      )}
+      {/* OPTIONS PANEL */}
+      {selectedData.type === 'object' && (
+        <Panel key="options" collapsed pad title={'Options'}>
+          <Typography.Text>Object formatting:</Typography.Text>
+          <Select
+            options={BODY_OPTIONS}
+            value={detailBodyFormat}
+            onChange={instance.onSelectFormat}
+          />
         </Panel>
       )}
     </Layout.Container>

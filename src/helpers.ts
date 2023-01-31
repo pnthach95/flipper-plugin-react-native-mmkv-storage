@@ -65,4 +65,15 @@ export const MAIN_COLUMNS: DataTableColumn<Data>[] = [
     key: 'value',
     title: 'Value',
   },
+  {
+    //@ts-ignore a trick to get the value column width can be changed
+    key: 'empty',
+    title: '',
+    visible: false,
+  },
 ];
+
+export const BODY_OPTIONS = ['formatted', 'parsed'].map(value => ({
+  label: value,
+  value,
+}));
