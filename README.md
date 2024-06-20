@@ -1,3 +1,5 @@
+# This repository is archived as Flipper is removed from React Native 0.74
+
 # Desktop Flipper plugin for [React Native MMKV Storage](https://github.com/ammarahm-ed/react-native-mmkv-storage)
 
 ## Features
